@@ -1,0 +1,12 @@
+html,
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0d1117;
+}
+/*# sourceMappingURL=main.css.map */

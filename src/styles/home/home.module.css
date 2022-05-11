@@ -86,4 +86,13 @@
 .icon img {
   width: 23px;
 }
+
+@media (max-width: 410px) {
+  .container {
+    position: fixed;
+  }
+  .selectContainer {
+    width: 80vw;
+  }
+}
 /*# sourceMappingURL=home.module.css.map */

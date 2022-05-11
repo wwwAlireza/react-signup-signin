@@ -70,4 +70,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border: 5px solid #0d1117;
+    @include centerContext();
+
+    img {
+        width: 23px;
+    }
 }

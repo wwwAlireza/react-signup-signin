@@ -78,5 +78,12 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   border: 5px solid #0d1117;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+.icon img {
+  width: 23px;
 }
 /*# sourceMappingURL=home.module.css.map */

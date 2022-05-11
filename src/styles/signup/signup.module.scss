@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+$fontPoppins: 'Poppins',
+sans-serif;
+
+@mixin centerContext {
+    display: grid;
+    place-content: center;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    @include centerContext();
+}
+
+.signupContainer {
+    width: 400px;
+    height: 400px;
+    background-color: #10151d;
+    border-radius: 10px;
+    border: 1px solid rgba($color: #fff, $alpha: .1);
+}
+
+.title {
+    font-size: 3rem;
+    padding: 15px 30px;
+    color: #2675f7;
+    font-family: $fontPoppins;
+    opacity: .8;
+}

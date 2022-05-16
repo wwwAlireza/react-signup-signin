@@ -1,0 +1,77 @@
+@mixin centerContent {
+    display: grid;
+    place-items: center;
+}
+
+.inputContainer {
+    width: 100%;
+    @include centerContent();
+    position: relative;
+}
+
+.input {
+    color: rgba($color: #fff, $alpha: .7);
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    // background-color: #1a212d;
+    background-color: #10151d;
+    border: 1px solid rgba($color: #fff, $alpha: .1);
+    outline: none;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 1.5rem;
+
+    &:focus {
+        ~.inputPlaceholder {
+            top: -16%;
+            font-size: 1.3rem;
+            color: #2675f7;
+        }
+
+        border-color: rgba($color: #2675f7, $alpha: 1);
+    }
+}
+
+.inputPlaceholder {
+    font-size: 1.6rem;
+    position: absolute;
+    left: 12%;
+    color: rgba($color: #fff, $alpha: .7);
+    transition: top .2s, font-size .2s;
+    top: 15%;
+    background-color: #10151d;
+    padding: 0 5px;
+}
+
+.dangerCause {
+    font-size: 1.4rem;
+    position: relative;
+    // left: -35%;
+    top: 22%;
+    color: rgba($color: #ff0b0b, $alpha: .9);
+    overflow: hidden;
+    overflow-wrap: break-word;
+    width: 77%;
+    text-align: start;
+}
+
+.activeInput {
+    .inputPlaceholder {
+        top: -16%;
+        font-size: 1.3rem;
+        color: rgba($color: #fff, $alpha: .3);
+    }
+}
+
+.dangerInput {
+    .inputPlaceholder {
+        color: rgba($color: #ff0b0b, $alpha: .9) !important;
+        top: -16%;
+        font-size: 1.3rem;
+    }
+
+    .input {
+        border: 1px solid rgba($color: #ff0b0b, $alpha: .5);
+    }
+}

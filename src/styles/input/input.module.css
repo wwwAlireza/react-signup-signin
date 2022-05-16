@@ -37,7 +37,7 @@
   color: rgba(255, 255, 255, 0.7);
   -webkit-transition: top .2s, font-size .2s;
   transition: top .2s, font-size .2s;
-  top: 15%;
+  top: 20%;
   background-color: #10151d;
   padding: 0 5px;
 }

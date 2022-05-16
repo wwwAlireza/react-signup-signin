@@ -22,4 +22,10 @@
   font-family: "Poppins", sans-serif;
   opacity: .8;
 }
+
+@media (max-width: 410px) {
+  .signupContainer {
+    width: 90vw;
+  }
+}
 /*# sourceMappingURL=signup.module.css.map */

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import styles from '../styles/input/input.module.css';
 
-const Input = ({ changer, cref, initialValue, placeholder, type, isCorrect, incorrectCause }) => {
+const Input = ({ changer, cref, initialValue, placeholder, type, isCorrect, incorrectCause, blur }) => {
     const { inputContainer, input, inputPlaceholder, activeInput, dangerInput, dangerCause } = styles;
     const containerRef = useRef();
     useEffect(() => {
@@ -20,7 +20,7 @@ const Input = ({ changer, cref, initialValue, placeholder, type, isCorrect, inco
     return (
         <>
             <div className={inputContainer} ref={containerRef}>
-                <input className={input} ref={cref} onChange={changer} value={initialValue} type={type} spellCheck="false" />
+                <input className={input} ref={cref} onChange={changer} onBlur={blur} value={initialValue} type={type} spellCheck="false" />
                 <span className={inputPlaceholder} onClick={() => { cref.current.focus() }}>{placeholder}</span>
                 <div className={dangerCause} style={{ visibility: `${isCorrect ? 'hidden' : 'visible'}` }}>{incorrectCause}</div>
             </div>

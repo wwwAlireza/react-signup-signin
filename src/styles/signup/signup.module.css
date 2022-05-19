@@ -23,6 +23,18 @@
   opacity: .8;
 }
 
+.inputsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  padding-top: 10px;
+}
+
 @media (max-width: 410px) {
   .signupContainer {
     width: 90vw;

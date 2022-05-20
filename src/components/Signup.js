@@ -4,18 +4,16 @@ import Input from './Input';
 
 const basicRules = {
     usernameMaxLength: 20,
-    usernameMinLength: 5
+    usernameMinLength: 5,
+    emailMaxLength: 40,
+    emailMinLength: 8,
 }
 const basicRegexp = {
     username: /^[a-zA-Z0-9]+$/,
+    email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 }
 
-// username reducer engine
-const usernameData = {
-    value: '',
-    isCorrect: true,
-    incorrectCause: ''
-};
+// data reducer
 const dataReducer = (state, action) => {
     if (action.action == 'setValue') {
         return { ...state, value: action.value }
@@ -24,7 +22,14 @@ const dataReducer = (state, action) => {
     }
 };
 
-// username reducer engine
+// username data
+const usernameData = {
+    value: '',
+    isCorrect: true,
+    incorrectCause: ''
+};
+
+// email data
 const emailData = {
     value: '',
     isCorrect: true,
@@ -66,6 +71,23 @@ const Signup = () => {
 
     // email
     const [email, dispatchEmail] = useReducer(dataReducer, emailData)
+    const emailRef = useRef();
+    const emailHandler = (eventData) => {
+        const emailValue = eventData.target.value;
+        if (emailValue.length <= basicRules.emailMaxLength) {
+            dispatchEmail({ action: 'setValue', value: emailRef.current.value })
+        }
+    };
+    const emailBlurHandler = (eventData) => {
+        const emailValue = eventData.target.value;
+        if (!emailValue) {
+            dispatchEmail({ action: 'setIsCorrect', value: false, cause: 'email required !' });
+        } else if (!basicRegexp.email.test(emailValue) || emailValue.length < basicRules.emailMinLength) {
+            dispatchEmail({ action: 'setIsCorrect', value: false, cause: 'Please enter the email in the correct format' });
+        } else {
+            dispatchEmail({ action: 'setIsCorrect', value: true, cause: '' });
+        }
+    };
 
 
     return (

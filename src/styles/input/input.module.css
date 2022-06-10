@@ -18,6 +18,7 @@
           box-sizing: border-box;
   padding: 10px;
   font-size: 1.5rem;
+  position: relative;
 }
 
 .input:focus {
@@ -51,6 +52,7 @@
   overflow-wrap: break-word;
   width: 77%;
   text-align: start;
+  padding-bottom: 5px;
 }
 
 .activeInput .inputPlaceholder {

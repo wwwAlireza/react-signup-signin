@@ -1,4 +1,5 @@
-import React, { useState, useRef, useReducer } from 'react';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
+import React, { useState, useRef, useReducer, useEffect } from 'react';
 import styles from '../styles/signup/signup.module.css';
 import Input from './Input';
 
@@ -58,9 +59,6 @@ const Signup = () => {
         if (usernameValue.length <= basicRules.usernameMaxLength) {
             dispatchUsername({ action: 'setValue', value: usernameRef.current.value })
         }
-    }
-    const usernameBlurHandler = (eventData) => {
-        const usernameValue = eventData.target.value;
         if (!basicRegexp.username.test(usernameValue)) {
             dispatchUsername({ action: 'setIsCorrect', value: false, cause: 'username should just be a combination of letters and numbers' })
         }
@@ -87,9 +85,6 @@ const Signup = () => {
         if (emailValue.length <= basicRules.emailMaxLength) {
             dispatchEmail({ action: 'setValue', value: emailRef.current.value })
         }
-    };
-    const emailBlurHandler = (eventData) => {
-        const emailValue = eventData.target.value;
         if (!emailValue) {
             dispatchEmail({ action: 'setIsCorrect', value: false, cause: 'email required !' });
         } else if (!basicRegexp.email.test(emailValue) || emailValue.length < basicRules.emailMinLength) {
@@ -107,9 +102,6 @@ const Signup = () => {
         if (passwordValue.length <= basicRules.passwordMaxLength) {
             dispatchPassword({ action: 'setValue', value: passwordRef.current.value })
         }
-    };
-    const passwordBlurHandler = (eventData) => {
-        const passwordValue = eventData.target.value;
         if (!passwordValue) {
             dispatchPassword({ action: 'setIsCorrect', value: false, cause: 'please specify a password !' });
         } else {
@@ -121,18 +113,32 @@ const Signup = () => {
         }
     };
 
+    // data checker
+    let [inputsIsCorrect, setInputsIsCorrect] = useState(false);
+    const mainInputs = [username, email, password];
+    useEffect(() => {
+        mainInputs.map(data => {
+            if (data.value && data.isCorrect) {
+                setInputsIsCorrect(true);
+            } else {
+                setInputsIsCorrect(false);
+            }
+        })
+    })
+    // console.log(inputsIsCorrect);
+
     return (
         <>
             <div className={container}>
                 <div className={signupContainer}>
                     <h1 className={title}>Sign Up</h1>
                     <form className={inputsContainer}>
-                        <Input changer={usernameHandler} blur={usernameBlurHandler} cref={usernameRef} initialValue={username.value} type="text" placeholder="username" isCorrect={username.isCorrect} incorrectCause={username.incorrectCause} />
-                        <Input changer={emailHandler} blur={emailBlurHandler} cref={emailRef} initialValue={email.value} type="email" placeholder="email" isCorrect={email.isCorrect} incorrectCause={email.incorrectCause} />
-                        <Input changer={passwordHandler} blur={passwordBlurHandler} cref={passwordRef} initialValue={password.value} type="password" placeholder="password" isCorrect={password.isCorrect} incorrectCause={password.incorrectCause} />
+                        <Input changer={usernameHandler} cref={usernameRef} initialValue={username.value} type="text" placeholder="username" isCorrect={username.isCorrect} incorrectCause={username.incorrectCause} />
+                        <Input changer={emailHandler} cref={emailRef} initialValue={email.value} type="email" placeholder="email" isCorrect={email.isCorrect} incorrectCause={email.incorrectCause} />
+                        <Input changer={passwordHandler} cref={passwordRef} initialValue={password.value} type="password" placeholder="password" isCorrect={password.isCorrect} incorrectCause={password.incorrectCause} />
                     </form>
                     <div className={signupFooter}>
-                        <button className={signupBtn} >Sign up</button>
+                        <button className={signupBtn} disabled={inputsIsCorrect ? false : true}>Sign up</button>
                     </div>
                 </div>
             </div>

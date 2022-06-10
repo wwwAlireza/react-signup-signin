@@ -7,10 +7,13 @@ const basicRules = {
     usernameMinLength: 5,
     emailMaxLength: 40,
     emailMinLength: 8,
+    passwordMaxLength: 20,
+    passwordMinLength: 8,
 }
 const basicRegexp = {
     username: /^[a-zA-Z0-9]+$/,
     email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    password: new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])"),
 }
 
 // data reducer
@@ -31,6 +34,13 @@ const usernameData = {
 
 // email data
 const emailData = {
+    value: '',
+    isCorrect: true,
+    incorrectCause: ''
+};
+
+// password data
+const passwordData = {
     value: '',
     isCorrect: true,
     incorrectCause: ''
@@ -89,16 +99,38 @@ const Signup = () => {
         }
     };
 
+    // password
+    const [password, dispatchPassword] = useReducer(dataReducer, passwordData);
+    const passwordRef = useRef();
+    const passwordHandler = (eventData) => {
+        const passwordValue = eventData.target.value;
+        if (passwordValue.length <= basicRules.passwordMaxLength) {
+            dispatchPassword({ action: 'setValue', value: passwordRef.current.value })
+        }
+    };
+    const passwordBlurHandler = (eventData) => {
+        const passwordValue = eventData.target.value;
+        if (!passwordValue) {
+            dispatchPassword({ action: 'setIsCorrect', value: false, cause: 'please specify a password !' });
+        } else {
+            if (basicRegexp.password.exec(passwordValue) && passwordValue.length > basicRules.passwordMinLength) {
+                dispatchPassword({ action: 'setIsCorrect', value: true, cause: '' });
+            } else {
+                dispatchPassword({ action: 'setIsCorrect', value: false, cause: 'password must be at least 8 characters long and must contain numbers, uppercase and lowercase letters, and special characters !' });
+            }
+        }
+    };
 
     return (
         <>
             <div className={container}>
                 <div className={signupContainer}>
                     <h1 className={title}>Sign Up</h1>
-                    <div className={inputsContainer}>
+                    <form className={inputsContainer}>
                         <Input changer={usernameHandler} blur={usernameBlurHandler} cref={usernameRef} initialValue={username.value} type="text" placeholder="username" isCorrect={username.isCorrect} incorrectCause={username.incorrectCause} />
                         <Input changer={emailHandler} blur={emailBlurHandler} cref={emailRef} initialValue={email.value} type="email" placeholder="email" isCorrect={email.isCorrect} incorrectCause={email.incorrectCause} />
-                    </div>
+                        <Input changer={passwordHandler} blur={passwordBlurHandler} cref={passwordRef} initialValue={password.value} type="password" placeholder="password" isCorrect={password.isCorrect} incorrectCause={password.incorrectCause} />
+                    </form>
                 </div>
             </div>
         </>

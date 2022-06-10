@@ -48,7 +48,7 @@ const passwordData = {
 
 
 const Signup = () => {
-    const { container, signupContainer, title, inputsContainer } = styles;
+    const { container, signupContainer, title, inputsContainer, signupFooter, signupBtn } = styles;
 
     // username
     const [username, dispatchUsername] = useReducer(dataReducer, usernameData)
@@ -131,6 +131,9 @@ const Signup = () => {
                         <Input changer={emailHandler} blur={emailBlurHandler} cref={emailRef} initialValue={email.value} type="email" placeholder="email" isCorrect={email.isCorrect} incorrectCause={email.incorrectCause} />
                         <Input changer={passwordHandler} blur={passwordBlurHandler} cref={passwordRef} initialValue={password.value} type="password" placeholder="password" isCorrect={password.isCorrect} incorrectCause={password.incorrectCause} />
                     </form>
+                    <div className={signupFooter}>
+                        <button className={signupBtn} >Sign up</button>
+                    </div>
                 </div>
             </div>
         </>

@@ -9,7 +9,7 @@
 
 .signupContainer {
   width: 400px;
-  height: 400px;
+  height: auto;
   background-color: #10151d;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -33,6 +33,45 @@
           flex-direction: column;
   gap: 15px;
   padding-top: 10px;
+}
+
+.signupFooter {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 23px;
+  margin-bottom: 30px;
+}
+
+.signupFooter .signupBtn {
+  outline: none;
+  border: none;
+  background-color: rgba(38, 117, 247, 0.7);
+  width: 140px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.signupFooter .signupBtn:hover {
+  opacity: .9;
+}
+
+.signupFooter .signupBtn:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+.signupFooter .signupBtn:disabled {
+  cursor: not-allowed;
+  opacity: .7;
+  -webkit-transform: scale(1) !important;
+          transform: scale(1) !important;
 }
 
 @media (max-width: 410px) {

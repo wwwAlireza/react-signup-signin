@@ -2,6 +2,7 @@ import { isDisabled } from '@testing-library/user-event/dist/utils';
 import React, { useState, useRef, useReducer, useEffect } from 'react';
 import styles from '../styles/signup/signup.module.css';
 import Input from './Input';
+import useDatabase from '../hooks/useDatabase';
 
 const basicRules = {
     usernameMaxLength: 20,
@@ -125,7 +126,29 @@ const Signup = () => {
             }
         })
     })
-    // console.log(inputsIsCorrect);
+
+    // click handler & database
+    let databaseHandler = useDatabase("database");
+
+    const signupClickHandler = () => {
+        let userIsExist = databaseHandler({ type: "CHECK", username: username.value.toLowerCase(), email: email.value.toLowerCase() });
+        if (userIsExist.exist) {
+            switch (userIsExist.via) {
+                case "username": {
+                    dispatchUsername({ action: 'setIsCorrect', value: false, cause: 'this username is already taken' });
+                    username.value = "";
+                    usernameRef.current.focus();
+                } break;
+                case "email": {
+                    dispatchEmail({ action: 'setIsCorrect', value: false, cause: 'this email is already exists' });
+                    email.value = "";
+                    emailRef.current.focus();
+                } break;
+            };
+        } else {
+            console.log("done !");
+        };
+    };
 
     return (
         <>
@@ -138,7 +161,7 @@ const Signup = () => {
                         <Input changer={passwordHandler} cref={passwordRef} initialValue={password.value} type="password" placeholder="password" isCorrect={password.isCorrect} incorrectCause={password.incorrectCause} />
                     </form>
                     <div className={signupFooter}>
-                        <button className={signupBtn} disabled={inputsIsCorrect ? false : true}>Sign up</button>
+                        <button className={signupBtn} disabled={inputsIsCorrect ? false : true} onClick={signupClickHandler}>Sign up</button>
                     </div>
                 </div>
             </div>

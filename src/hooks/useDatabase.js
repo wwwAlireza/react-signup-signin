@@ -8,7 +8,7 @@ const useDatabase = (databaseName) => {
         // database on localStorage
         let database = localStorage.getItem(databaseName);
         if (!database) {
-            localStorage.setItem(databaseName, JSON.stringify([{ index: 0 }]));
+            localStorage.setItem(databaseName, JSON.stringify([{ index: 0, username: "admin", email: "admin@gmail.com", password: "admin" }]));
             database = localStorage.getItem(databaseName);
             database = JSON.parse(database);
         } else {

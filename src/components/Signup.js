@@ -1,5 +1,6 @@
 import { isDisabled } from '@testing-library/user-event/dist/utils';
 import React, { useState, useRef, useReducer, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/signup/signup.module.css';
 import Input from './Input';
 import useDatabase from '../hooks/useDatabase';
@@ -51,6 +52,7 @@ const passwordData = {
 
 const Signup = () => {
     const { container, signupContainer, title, inputsContainer, signupFooter, signupBtn } = styles;
+    const pageNavigate = useNavigate();
 
     // username
     const [username, dispatchUsername] = useReducer(dataReducer, usernameData)
@@ -146,7 +148,10 @@ const Signup = () => {
                 } break;
             };
         } else {
-            console.log("done !");
+            databaseHandler({ type: "CREATE", username: username.value.toLowerCase(), email: email.value.toLowerCase(), password: password.value });
+            sessionStorage.setItem("signedUser", username.value);
+            pageNavigate("/account", { replace: true });
+
         };
     };
 

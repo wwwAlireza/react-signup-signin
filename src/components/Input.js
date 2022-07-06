@@ -20,7 +20,7 @@ const Input = ({ changer, cref, initialValue, placeholder, type, isCorrect, inco
     return (
         <>
             <div className={inputContainer} ref={containerRef}>
-                <input className={input} ref={cref} onChange={changer} onBlur={blur} value={initialValue} type={type} spellCheck="false" />
+                <input className={input} ref={cref} onChange={changer} onBlur={blur} value={initialValue} type={type} spellCheck="false" autoComplete='off' />
                 <span className={inputPlaceholder} onClick={() => { cref.current.focus() }}>{placeholder}</span>
                 <div className={dangerCause} style={{ visibility: `${isCorrect ? 'hidden' : 'visible'}` }}>{incorrectCause}</div>
             </div>

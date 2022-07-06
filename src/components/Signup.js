@@ -1,9 +1,9 @@
-import { isDisabled } from '@testing-library/user-event/dist/utils';
 import React, { useState, useRef, useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/signup/signup.module.css';
 import Input from './Input';
 import useDatabase from '../hooks/useDatabase';
+import useTitle from '../hooks/useTitle';
 
 const basicRules = {
     usernameMaxLength: 20,
@@ -51,6 +51,7 @@ const passwordData = {
 
 
 const Signup = () => {
+    useTitle("Sign up")
     const { container, signupContainer, title, inputsContainer, signupFooter, signupBtn } = styles;
     const pageNavigate = useNavigate();
 

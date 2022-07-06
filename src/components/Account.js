@@ -1,7 +1,9 @@
 import React from 'react';
-import styles from "../styles/account/account.module.css"
+import styles from "../styles/account/account.module.css";
+import useTitle from '../hooks/useTitle';
 
 const Account = () => {
+    useTitle("Account")
     const signedUser = sessionStorage.getItem("signedUser");
     const { container, headerText, bodyText, headerText_hello } = styles;
     return (

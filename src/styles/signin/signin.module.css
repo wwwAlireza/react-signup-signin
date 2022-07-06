@@ -1,1 +1,76 @@
-/* No CSS *//*# sourceMappingURL=signin.module.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+.signinContainer {
+  width: 350px;
+  height: auto;
+  background-color: #10151d;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.title {
+  font-size: 3rem;
+  padding: 15px 30px;
+  color: #2675f7;
+  font-family: "Poppins", sans-serif;
+  opacity: .8;
+}
+
+.inputsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.signinFooter {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 23px;
+  margin-bottom: 30px;
+}
+
+.signinFooter .signinBtn {
+  outline: none;
+  border: none;
+  background-color: rgba(38, 117, 247, 0.7);
+  width: 140px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.signinFooter .signinBtn:hover {
+  opacity: .9;
+}
+
+.signinFooter .signinBtn:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+.signinFooter .signinBtn:disabled {
+  cursor: not-allowed;
+  opacity: .7;
+  -webkit-transform: scale(1) !important;
+          transform: scale(1) !important;
+}
+/*# sourceMappingURL=signin.module.css.map */

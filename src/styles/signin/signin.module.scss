@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+$fontPoppins: 'Poppins',
+sans-serif;
+
+@mixin centerContent {
+    display: grid;
+    place-content: center;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    @include centerContent();
+}
+
+.signinContainer {
+    width: 350px;
+    height: auto;
+    background-color: #10151d;
+    border-radius: 10px;
+    border: 1px solid rgba($color: #fff, $alpha: .1);
+}
+
+.title {
+    font-size: 3rem;
+    padding: 15px 30px;
+    color: #2675f7;
+    font-family: $fontPoppins;
+    opacity: .8;
+}
+
+.inputsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 10px;
+}
+
+// signin footer
+.signinFooter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 23px;
+    margin-bottom: 30px;
+
+    .signinBtn {
+        outline: none;
+        border: none;
+        background-color: rgba($color: #2675f7, $alpha: .7);
+        width: 140px;
+        height: 50px;
+        border-radius: 5px;
+        font-size: 1.8rem;
+        color: rgba($color: #ffffff, $alpha: .9);
+
+        &:hover {
+            opacity: .9;
+        }
+
+        &:active {
+            transform: scale(.95);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: .7;
+            transform: scale(1) !important;
+        }
+    }
+}

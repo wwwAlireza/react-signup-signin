@@ -33,10 +33,10 @@ const useDatabase = (databaseName) => {
         };
 
         // read user
-        const readUser = (username, email) => {
+        const readUser = (username, email = '') => {
             readDatabase();
             let findUser = database.map(user => {
-                if (user.username == username && user.email == email) {
+                if (user.username == username || user.email == email) {
                     return user;
                 }
             })
@@ -45,7 +45,7 @@ const useDatabase = (databaseName) => {
         };
 
         // check user
-        const checkUser = (username, email) => {
+        const checkUser = (username, email = '') => {
             readDatabase();
             let checkUser = database.map(user => {
                 if (user.username == username) {

@@ -73,4 +73,10 @@
   -webkit-transform: scale(1) !important;
           transform: scale(1) !important;
 }
+
+@media (max-width: 360px) {
+  .signinContainer {
+    width: 90vw;
+  }
+}
 /*# sourceMappingURL=signin.module.css.map */

@@ -69,3 +69,12 @@ sans-serif;
         }
     }
 }
+
+;
+
+// responsive
+@media (max-width: 360px) {
+    .signinContainer {
+        width: 90vw;
+    }
+}
